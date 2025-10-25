@@ -22,41 +22,41 @@ function FAQ({ onClose }) {
   return (
       <Modal onClose={onClose}>
         <ul>
-          <Question>What is LegalEaseAI?</Question>
+          <Question>What is LegalLens?</Question>
           <Answer>
-          LegalEaseAI is a web app that offers a range of legal services powered by advanced artificial intelligence. It can provide legal counsel, analyze, summarize, and draft legal documents, and predict case outcomes. LegalEaseAI aims to simplify and streamline legal processes, saving users time and effort.
+          LegalLens is a web app that offers a range of legal services powered by advanced artificial intelligence. It can provide legal counsel, analyze, summarize, and draft legal documents, and predict case outcomes. LegalLens aims to simplify and streamline legal processes, saving users time and effort.
           </Answer>
-          <Question>How does LegalEaseAI provide legal counsel?</Question>
+          <Question>How does LegalLens provide legal counsel?</Question>
           <Answer>
-          LegalEaseAI uses advanced AI algorithms, specifically Large Language Models (LLMs) and Natural Language Processing (NLP), to understand and interpret user queries. It generates accurate, easy-to-understand responses, providing instant legal counsel on various topics.
+          LegalLens uses advanced AI algorithms, specifically Large Language Models (LLMs) and Natural Language Processing (NLP), to understand and interpret user queries. It generates accurate, easy-to-understand responses, providing instant legal counsel on various topics.
           </Answer>
-          <Question>Can LegalEaseAI draft legal documents?</Question>
+          <Question>Can LegalLens draft legal documents?</Question>
           <Answer>
-          Yes, LegalEaseAI can generate legal documents based on user requirements. It uses AI algorithms to produce contextually appropriate content, assisting users in drafting contracts, agreements, or legal letters.
+          Yes, LegalLens can generate legal documents based on user requirements. It uses AI algorithms to produce contextually appropriate content, assisting users in drafting contracts, agreements, or legal letters.
           </Answer>
-          <Question>How does LegalEaseAI summarize legal documents?</Question>
+          <Question>How does LegalLens summarize legal documents?</Question>
           <Answer>
-          LegalEaseAI employs AI algorithms to comprehend complex legal jargon and extract essential information from lengthy documents. It presents the most crucial information concisely, saving users time and effort by providing easily digestible summaries.
+          LegalLens employs AI algorithms to comprehend complex legal jargon and extract essential information from lengthy documents. It presents the most crucial information concisely, saving users time and effort by providing easily digestible summaries.
           </Answer>
-          <Question>Can LegalEaseAI predict case outcomes?</Question>
+          <Question>Can LegalLens predict case outcomes?</Question>
           <Answer>
-          LegalEaseAI can predict case outcomes by analyzing historical cases and identifying patterns and trends within legal data. It forecasts potential outcomes, helping users make strategic decisions and prepare for various legal scenarios.
+          LegalLens can predict case outcomes by analyzing historical cases and identifying patterns and trends within legal data. It forecasts potential outcomes, helping users make strategic decisions and prepare for various legal scenarios.
           </Answer>
-          <Question>How does LegalEaseAI handle data privacy?</Question>
+          <Question>How does LegalLens handle data privacy?</Question>
           <Answer>
-          LegalEaseAI takes data privacy very seriously. We do not store or sell any user data. All data processed by LegalEaseAI is treated with the utmost confidentiality, ensuring the privacy and security of your information.
+          LegalLens takes data privacy very seriously. We do not store or sell any user data. All data processed by LegalLens is treated with the utmost confidentiality, ensuring the privacy and security of your information.
           </Answer>
-          <Question>How is LegalEaseAI different from traditional legal services?</Question>
+          <Question>How is LegalLens different from traditional legal services?</Question>
           <Answer>
-          LegalEaseAI harnesses the power of AI to offer quick, accurate, and affordable legal services. Traditional legal services typically involve human experts and can be time-consuming and costly. LegalEaseAI aims to make legal assistance more accessible, efficient, and user-friendly.
+          LegalLens harnesses the power of AI to offer quick, accurate, and affordable legal services. Traditional legal services typically involve human experts and can be time-consuming and costly. LegalLens aims to make legal assistance more accessible, efficient, and user-friendly.
           </Answer>
-          <Question>Can I trust the accuracy of LegalEaseAI's services?</Question>
+          <Question>Can I trust the accuracy of LegalLens's services?</Question>
           <Answer>
-          LegalEaseAI uses state-of-the-art AI algorithms to provide its services. While the AI strives to deliver accurate and reliable information, it is essential to consult with a legal professional for specific legal advice tailored to your unique situation.
+          LegalLens uses state-of-the-art AI algorithms to provide its services. While the AI strives to deliver accurate and reliable information, it is essential to consult with a legal professional for specific legal advice tailored to your unique situation.
           </Answer>
-          <Question>How can I get started with LegalEaseAI?</Question>
+          <Question>How can I get started with LegalLens?</Question>
           <Answer>
-          To get started with LegalEaseAI, simply explore the available features. You can begin using the web app to access legal counsel, draft documents, analyze and summarize legal documents, and predict case outcomes.
+          To get started with LegalLens, simply explore the available features. You can begin using the web app to access legal counsel, draft documents, analyze and summarize legal documents, and predict case outcomes.
           </Answer>
         </ul>
       </Modal>
