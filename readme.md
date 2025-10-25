@@ -1,10 +1,10 @@
-# LegalEase-AI
+# LegalLens
 
-LegalEase-AI is an AI-powered system that processes, summarizes, and retrieves legal documents, enabling users to quickly understand complex contracts and receive structured responses to their legal queries.
+LegalLens is an AI-powered system that processes, summarizes, and retrieves legal documents, enabling users to quickly understand complex contracts and receive structured responses to their legal queries.
 
 ## Overview
 
-LegalEase-AI allows users to upload legal documents (PDFs, images, or text files), extracts text, summarizes it, and stores the information for future retrieval. Users can then ask questions, and the system retrieves relevant sections from the document, generates an AI-powered response, and presents it in the user's preferred language.
+LegalLens allows users to upload legal documents (PDFs, images, or text files), extracts text, summarizes it, and stores the information for future retrieval. Users can then ask questions, and the system retrieves relevant sections from the document, generates an AI-powered response, and presents it in the user's preferred language.
 
 ## Features
 
