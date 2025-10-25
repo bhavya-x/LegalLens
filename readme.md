@@ -66,10 +66,10 @@ LegalEase-AI allows users to upload legal documents (PDFs, images, or text files
 ![Landing UI](./main.png)
 
 ### Summarization UI
-![Summary UI](./image1.png)
+![Summary UI](./image2.png)
 
 ### Chat UI
-![Chat UI](./image2.png)
+![Chat UI](./image3.png)
 
 ## Tech Stack
 
