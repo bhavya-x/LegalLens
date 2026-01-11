@@ -1,106 +1,80 @@
-# LegalLens
+<div align="center">
 
-LegalLens is an AI-powered system that processes, summarizes, and retrieves legal documents, enabling users to quickly understand complex contracts and receive structured responses to their legal queries.
+# ⚖️ LegalLens
+
+**AI-powered legal document analysis — upload a contract, get summaries, and ask questions in your language.**
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-API-000000?style=flat-square&logo=flask)](https://flask.palletsprojects.com/)
+[![Pinecone](https://img.shields.io/badge/Pinecone-Vector%20DB-1B1F23?style=flat-square)](https://www.pinecone.io/)
+[![Haystack](https://img.shields.io/badge/Haystack-NLP-FF6F00?style=flat-square)](https://haystack.deepset.ai/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Chat%20History-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+
+</div>
+
+---
 
 ## Overview
 
-LegalLens allows users to upload legal documents (PDFs, images, or text files), extracts text, summarizes it, and stores the information for future retrieval. Users can then ask questions, and the system retrieves relevant sections from the document, generates an AI-powered response, and presents it in the user's preferred language.
+LegalLens makes legal documents understandable. Upload a PDF, scanned image, or text file and the system extracts text, translates if needed, summarises long passages, and indexes the content for retrieval. You can then chat with the document in your preferred language and get structured, source-backed answers.
+
+## Pipeline
+
+```
+Upload → OCR / pdfplumber → Language detect & translate
+       → BigBird-Pegasus summarisation
+       → Embeddings → Pinecone (retrieval)
+       → User question → m2m100 translate
+       → Haystack EmbeddingRetriever → Pinecone
+       → Seq2SeqGenerator (BART LFQA) → Answer
+       → MongoDB chat history → translate back to user language
+```
 
 ## Features
 
-- **Document Upload**: Supports scanned images, PDFs, and text files.
-- **OCR Processing**: Uses Tesseract.js for extracting text from images.
-- **Translation**: Automatically translates documents and responses.
-- **Summarization**: Uses BigBird-Pegasus to create concise legal summaries.
-- **Search & Retrieval**: Stores vector embeddings in Pinecone for fast retrieval.
-- **AI-Generated Responses**: Provides structured legal answers using NLP models.
-- **Multi-Language Support**: Allows users to interact in different languages.
-- **Chat History Storage**: Saves conversations in MongoDB for context-aware responses.
-
-## Workflow
-
-### 1️⃣ User Uploads a Legal Document
-- **Input**: PDF, Image (Scanned Legal Document), or Text File
-- **Processing**:
-  - Extracts text using `pdfplumber` (for text-based PDFs) or `tesseract.js` (for scanned images).
-  - Detects language and translates to English if needed (`facebook/m2m100`).
-
-### 2️⃣ Text Preprocessing & Translation
-- **Cleans extracted text**: Removes special characters, spaces, and formats legal citations.
-- **Translates non-English documents** using `facebook/m2m100`.
-
-### 3️⃣ Summarization
-- **Uses BigBird-Pegasus** to summarize long documents.
-- **Breaks down text** into chunks and summarizes each before merging.
-
-### 4️⃣ Storing Data
-- **Embeddings** stored in **Pinecone Vector DB**.
-- **Chat history** saved in **MongoDB** for future reference.
-
-### 5️⃣ User Asks a Question
-- Checks if the query needs translation (`facebook/m2m100`).
-- Retrieves relevant past chat history (`MongoDB`).
-
-### 6️⃣ Retrieving Relevant Text
-- Converts query into vector embeddings (`EmbeddingRetriever - Haystack`).
-- Searches Pinecone for relevant document sections.
-
-### 7️⃣ AI-Powered Answer Generation
-- `Seq2SeqGenerator (Haystack)` processes user query & retrieved text.
-- Generates structured legal response.
-
-### 8️⃣ Context Retention & Translation
-- Saves chat history for context-aware interactions.
-- Translates answer back to user's preferred language (if needed).
-
-### 9️⃣ Final Response Display
-- User receives AI-generated structured legal answer.
-
-## Flowchart
-
-![Workflow](./legallens.png)
-
-## UI Screenshots
-
-### Landing Page
-![Landing UI](./main.png)
-
-### Summarization UI
-![Summary UI](./image2.png)
-
-### Chat UI
-![Chat UI](./image3.png)
+| Capability | Implementation |
+|---|---|
+| Document ingestion | PDFs, scanned images, plain text |
+| OCR | Tesseract.js for scanned legal docs |
+| Translation | Facebook `m2m100` (multi-direction) |
+| Summarisation | BigBird-Pegasus with chunking |
+| Vector search | Pinecone (`us-west4-gcp-free`, cosine, 768d) |
+| QA generation | Haystack `Seq2SeqGenerator` + `vblagoje/bart_lfqa` |
+| Context retention | MongoDB conversation history |
+| UI | React/Vue web frontend served via Flask |
 
 ## Tech Stack
 
-### Frontend
-- `React.js` or `Vue.js`
-- `JavaScript` (for UI interactions)
+- **Backend:** Flask + Haystack + HuggingFace Transformers
+- **NLP models:** BERT (length tokeniser), BART LFQA (generation), m2m100 (translation), BigBird-Pegasus (summarisation), `flax-sentence-embeddings/all_datasets_v3_mpnet-base` (embeddings)
+- **Storage:** Pinecone (vectors), MongoDB (chat history)
+- **Frontend:** Web app under `webapp/`
 
-### Backend
-- `Flask` (Python)
+## Getting Started
 
-### Document Processing
-- `pdfplumber` (for text PDFs)
-- `tesseract.js` (OCR for images & scanned PDFs)
-- `facebook/m2m100` (Language Translation)
+```bash
+git clone https://github.com/bhavya-x/LegalLens.git
+cd LegalLens
+pip install -r requirements.txt   # if present
+# Configure Pinecone + MongoDB credentials in includes/dependencies.py
+python server.py
+```
 
-### Summarization
-- `BigBird-Pegasus` (Summarization Model)
-- `RecursiveCharacterTextSplitter` (for chunking)
+## Repository Layout
 
-### Storage & Retrieval
-- `Pinecone` (Vector Database for embeddings)
-- `MongoDB` (Chat history storage)
-- `sentence-transformers/all-mpnet-base-v2` (Embedding Model)
+```
+LegalLens/
+├── server.py              # Flask app + Haystack pipeline
+├── includes/              # Shared dependencies and helpers
+├── data/                  # Sample legal datasets
+├── models/                # Model artefacts / configs
+├── webapp/                # Frontend
+├── plots/                 # Architecture diagrams
+└── readme.md              # Original project notes
+```
 
-### Query & Answer Generation
-- `Haystack` (For retrieval & QA pipeline)
-- `EmbeddingRetriever` (Retrieves legal text from Pinecone)
-- `Seq2SeqGenerator` (Generates structured answers)
+## Screenshots
 
-## Future Improvements
-- **User Authentication** for personalized legal document management.
-- **Improved UI** with interactive contract visualization.
-- **Enhanced Legal Reasoning** using fine-tuned LLMs.
-
+| Landing | Summary | Chat |
+|---|---|---|
+| ![Landing](main.png) | ![Summary](image2.png) | ![Chat](image3.png) |
